@@ -1,12 +1,14 @@
 import logo from './logo.svg';
 import React from 'react';
-import rd3 from 'react-d3-library'
+
 
 import './App.css';
+import BiddingBox from "./BiddingBox";
 
 
 function App() {
   return (
+
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
@@ -19,11 +21,15 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Learn React piciu
         </a>
       </header>
+      <BiddingBox>
+
+      </BiddingBox>
     </div>
   );
 }
+
 
 export default App;
