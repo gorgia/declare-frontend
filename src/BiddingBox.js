@@ -14,14 +14,18 @@ export default class BiddingBox extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            show: true
+            show: props.show
         };
     }
 
     render() {
         return (
             <Container fluid={"xl"}>
-                    <StyledToast show={this.state.show} onClose={() => this.setState({show: !this.state.show})}>
+                    <StyledToast show={this.state.show} onClose={() => {
+                        this.setState({show: !this.state.show})
+                        console.log("BUTTON CLOSE CLICKED")
+                    }
+                    }>
                         <Toast.Header>
                             <img
                                 src="holder.js/20x20?text=%20"
