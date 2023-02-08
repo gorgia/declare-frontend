@@ -44,21 +44,13 @@ const orgChart = {
     ],
 };
 
-const popover = (
-    <Popover id="popover-basic">
-        <Popover.Header as="h3">Popover right</Popover.Header>
-        <Popover.Body>
-            And here's some <strong>amazing</strong> content. It's very engaging.
-            right?
-        </Popover.Body>
-    </Popover>
-)
 
 const handleClick = (showRef) => {
     console.log("node clicked!")
     showRef = !showRef
     return showRef
 }
+
 
 const renderRectSvgNode = ({nodeDatum, showRef}) => (
     <g>
@@ -70,9 +62,9 @@ const renderRectSvgNode = ({nodeDatum, showRef}) => (
                 {nodeDatum.attributes?.department}
             </text>
         )}
-        <foreignObject width={100} height={400} x={20}>
+        <foreignObject width={20} height={20} x={20} y={-20}>
             <div>
-                <NodeChoice show={showRef}/>
+                <NodeChoice show={true}/>
             </div>
         </foreignObject>
     </g>

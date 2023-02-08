@@ -19,7 +19,8 @@
     "react-scripts": "^5.0.1",
     "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4",
-    "zingchart": "^2.9.10"
+    "zingchart": "^2.9.10",
+    "zingchart-react": "^3.1.4"
   },
   "scripts": {
     "start": "react-scripts start",

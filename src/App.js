@@ -2,8 +2,8 @@ import React from 'react';
 
 
 import './App.css';
-import BiddingBox from "./BiddingBox";
 import BiddingGraphComponent from "./BiddingGraph";
+
 
 
 function App() {

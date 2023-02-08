@@ -1,41 +1,52 @@
-import React, {Component, useRef} from "react"
+import React, {Component, createElement, forwardRef, useRef} from "react"
+
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Popover from "react-bootstrap/Popover";
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import {Overlay} from "react-bootstrap";
-
+import BiddingBox from "./BiddingBox";
+import BiddingBox2 from "./BiddingBox2";
 
 
 export default class NodeChoice extends Component {
+
     constructor(props) {
         super(props);
-        this.myRef = React.createRef().current;
+        this.myRef = React.createRef();
         this.state = {
             show: props.show
         };
     }
 
 
-
     render() {
-        const popover = (
-            <Popover id="popover-basic" >
+        const biddingBox = (
+            <Popover id="popover-bidding">
+                <Popover.Body>
+                    <BiddingBox style={{margin: 0}} show={true}/>
+                </Popover.Body>
+            </Popover>);
+
+        const chooseAction = (
+            <Popover id="popover-basic">
                 <Popover.Body>
                     <div className="btn-group-vertical">
-                        <Button type="button" className="btn btn-primary">+</Button>
-                        <Button type="button" className="btn btn-primary">i</Button>
-                        <Button type="button" className="btn btn-primary">-</Button>
-                        <Button type="button" className="btn btn-primary">X</Button>
+                        <OverlayTrigger style={{margin: 0}} trigger='click' placement="right" overlay={biddingBox}>
+                            <Button type="button" className="btn btn-primary" size="sm">+</Button>
+                        </OverlayTrigger>
+                        <Button type="button" className="btn btn-primary" size="sm">i</Button>
+                        <Button type="button" className="btn btn-primary" size="sm">-</Button>
+                        <Button type="button" className="btn btn-primary" size="sm">X</Button>
                     </div>
                 </Popover.Body>
             </Popover>
-        )
+        );
 
         return (
-            <OverlayTrigger trigger="click" placement="right" overlay={popover}>
-                <Button variant="success">Hover me to see</Button>
+            <OverlayTrigger trigger='click' placement="right" overlay={chooseAction}>
+                <Button variant='link' className="rounded-circle" size='sm'>+</Button>
             </OverlayTrigger>
         )
     }
