@@ -4,6 +4,7 @@ import BiddingBox from "./BiddingBox";
 import NodeChoice from "./NodeChoice";
 import Button from "react-bootstrap/Button";
 import {OverlayTrigger, Popover} from "react-bootstrap";
+import clone from "clone";
 
 // This is a simplified example of an org chart with a depth of 2.
 // Note how deeper levels are defined recursively via the `children` property.
@@ -50,6 +51,31 @@ const handleClick = (showRef) => {
     showRef = !showRef
     return showRef
 }
+
+
+const addChildNode = () => {
+    const nextData = clone(this.state.data);
+    const target = nextData.children;
+    this.injectedNodesCount++;
+    target.push({
+        name: `Inserted Node ${this.injectedNodesCount}`,
+        id: `inserted-node-${this.injectedNodesCount}`
+    });
+    this.setState({
+        data: nextData
+    });
+};
+
+const removeChildNode = () => {
+    const nextData = clone(this.state.data);
+    const target = nextData.children;
+    target.pop();
+    this.injectedNodesCount--;
+    this.setState({
+        data: nextData
+    });
+};
+
 
 
 const renderRectSvgNode = ({nodeDatum, showRef}) => (

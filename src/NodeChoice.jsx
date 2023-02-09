@@ -29,11 +29,17 @@ export default class NodeChoice extends Component {
                 </Popover.Body>
             </Popover>);
 
+        const biddingBoxPopoverSyle = {
+            margin: 0,
+            maxWidth: null
+        };
+
         const chooseAction = (
             <Popover id="popover-basic">
                 <Popover.Body>
                     <div className="btn-group-vertical">
-                        <OverlayTrigger style={{margin: 0}} trigger='click' placement="right" overlay={biddingBox}>
+                        <OverlayTrigger style={biddingBoxPopoverSyle} trigger='click' placement="right"
+                                        overlay={biddingBox}>
                             <Button type="button" className="btn btn-primary" size="sm">+</Button>
                         </OverlayTrigger>
                         <Button type="button" className="btn btn-primary" size="sm">i</Button>
