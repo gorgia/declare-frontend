@@ -18,6 +18,7 @@ export default class NodeChoice extends Component {
         this.state = {
             show: props.show
         };
+        this.addChildNode = props.addChildNode.bind(this);
     }
 
 
@@ -44,7 +45,7 @@ export default class NodeChoice extends Component {
                         </OverlayTrigger>
                         <Button type="button" className="btn btn-primary" size="sm">i</Button>
                         <Button type="button" className="btn btn-primary" size="sm">-</Button>
-                        <Button type="button" className="btn btn-primary" size="sm">X</Button>
+                        <Button type="button" className="btn btn-primary" size="sm" onClick={this.addChildNode}>X</Button>
                     </div>
                 </Popover.Body>
             </Popover>

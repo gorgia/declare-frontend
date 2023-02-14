@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Tree from 'react-d3-tree';
 import BiddingBox from "./BiddingBox";
 import NodeChoice from "./NodeChoice";
@@ -53,6 +53,19 @@ const handleClick = (showRef) => {
 }
 
 
+
+
+const removeChildNode = () => {
+    const nextData = clone(this.state.data);
+    const target = nextData.children;
+    target.pop();
+    this.injectedNodesCount--;
+    this.setState({
+        data: nextData
+    });
+};
+
+
 const addChildNode = () => {
     const nextData = clone(this.state.data);
     const target = nextData.children;
@@ -66,41 +79,82 @@ const addChildNode = () => {
     });
 };
 
-const removeChildNode = () => {
-    const nextData = clone(this.state.data);
-    const target = nextData.children;
-    target.pop();
-    this.injectedNodesCount--;
-    this.setState({
-        data: nextData
-    });
-};
 
-
-
-const renderRectSvgNode = ({nodeDatum, showRef}) => (
-    <g>
-        <text fill="black" strokeWidth="1" x="20">
-            {nodeDatum.name}
-        </text>
-        {nodeDatum.attributes?.department && (
-            <text fill="black" x="20" dy="20" strokeWidth="1">
-                {nodeDatum.attributes?.department}
-            </text>
-        )}
-        <foreignObject width={20} height={20} x={20} y={-20}>
-            <div>
-                <NodeChoice show={true}/>
-            </div>
-        </foreignObject>
-    </g>
-);
 
 export default function OrgChartTree() {
+    const [injectedNodesCount, setInjectedNodesCount] = useState(3);
+    const [orgChartData, setData] = useState(
+        {
+        name: 'Quinta Nobile',
+        children: [
+            {
+                name: '1♧',
+                attributes: {
+                    department: 'Opening',
+                    HCP: 12,
+                },
+                children: [
+                    {
+                        name: '1♢',
+                        attributes: {
+                            department: 'Fabrication',
+                        },
+                        children: [
+                            {
+                                name: 'Worker',
+                            },
+                        ],
+                    },
+                    {
+                        name: '1♡',
+                        attributes: {
+                            department: 'Assembly',
+                        },
+                        children: [
+                            {
+                                name: '1♤',
+                            },
+                        ],
+                    },
+                ],
+            },
+        ],
+    });
+
+    const addNode = () => {
+        console.log("addNodeCalled")
+        const nextData = clone(orgChartData);
+        const target = nextData.children;
+        setInjectedNodesCount(injectedNodesCount + 1)
+        target.push({
+            name: `Inserted Node ${injectedNodesCount}`,
+            id: `inserted-node-${injectedNodesCount}`
+        });
+        setData(nextData);
+    };
+
+    const renderRectSvgNode = ({nodeDatum, showRef}) => (
+        <g>
+            <text fill="black" strokeWidth="1" x="20">
+                {nodeDatum.name}
+            </text>
+            {nodeDatum.attributes?.department && (
+                <text fill="black" x="20" dy="20" strokeWidth="1">
+                    {nodeDatum.attributes?.department}
+                </text>
+            )}
+            <foreignObject width={20} height={20} x={20} y={-20}>
+                <div>
+                    <NodeChoice show={true} addChildNode={addNode}/>
+                </div>
+            </foreignObject>
+        </g>
+    );
+
     return (
         // `<Tree />` will fill width/height of its container; in this case `#treeWrapper`.
         <div id="treeWrapper" style={{width: '50em', height: '20em'}}>
-            <Tree data={orgChart}
+            <Tree data={orgChartData}
                   renderCustomNodeElement={
                       renderRectSvgNode
                   }
