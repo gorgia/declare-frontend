@@ -1,0 +1,19 @@
+{
+  "distribution": {
+    "suits_distribution": {
+      "numberOfSpades": null,
+      "numberOfHearts": null,
+      "numberOfDiamonds": null,
+      "numberOfClubs": null
+    },
+    "shapes": {
+      "number_of_singletons": 0,
+      "monocolor": false,
+      "bicolor": false
+    }
+  },
+  "points": {
+    "HCP": 0,
+    "distribution_points": 0
+  }
+}

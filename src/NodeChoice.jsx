@@ -7,7 +7,6 @@ import Popover from "react-bootstrap/Popover";
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import {Overlay} from "react-bootstrap";
 import BiddingBox from "./BiddingBox";
-import BiddingBox2 from "./BiddingBox2";
 
 
 export default class NodeChoice extends Component {
