@@ -13,7 +13,9 @@
     }
   },
   "points": {
-    "HCP": 0,
-    "distribution_points": 0
+    "HCP-min": 0,
+    "HCP-max": 0,
+    "distribution_points-min": 0,
+    "distribution_points-max": 0
   }
 }
