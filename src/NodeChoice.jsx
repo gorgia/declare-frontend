@@ -7,6 +7,7 @@ import Popover from "react-bootstrap/Popover";
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import {Overlay} from "react-bootstrap";
 import BiddingBox from "./BiddingBox";
+import OffCanvasBid from "./OffCanvasBid";
 
 
 export default class NodeChoice extends Component {
@@ -15,7 +16,8 @@ export default class NodeChoice extends Component {
         super(props);
         this.myRef = React.createRef();
         this.state = {
-            show: props.show
+            show: props.show,
+            off_canvas_show : false
         };
         this.addChildNode = props.addChildNode.bind(this);
     }
@@ -34,14 +36,19 @@ export default class NodeChoice extends Component {
             maxWidth: null
         };
 
+        const setOffCanvasShow = (value: boolean) => {
+            console.log ("setOffCanvasShow called:  off_canvas_show_status:" + this.state.off_canvas_show)
+            this.setState({off_canvas_show : value}, () => console.log(this.state.off_canvas_show))
+        }
+        const handleOffCanvasClose = () => setOffCanvasShow(false);
+        const toggleOffCanvasShow = () => setOffCanvasShow(!this.state.off_canvas_show);
+
         const chooseAction = (
             <Popover id="popover-basic">
                 <Popover.Body>
                     <div className="btn-group-vertical">
-                        <OverlayTrigger style={biddingBoxPopoverSyle} trigger='click' placement="right"
-                                        overlay={biddingBox}>
-                            <Button type="button" className="btn btn-primary" size="sm">+</Button>
-                        </OverlayTrigger>
+                        <Button type="button" className="btn btn-primary" size="sm" onClick={toggleOffCanvasShow}>+</Button>
+                        <OffCanvasBid show={this.state.off_canvas_show} onHide={handleOffCanvasClose}/>
                         <Button type="button" className="btn btn-primary" size="sm">i</Button>
                         <Button type="button" className="btn btn-primary" size="sm">-</Button>
                         <Button type="button" className="btn btn-primary" size="sm" onClick={this.addChildNode}>X</Button>

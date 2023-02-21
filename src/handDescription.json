@@ -13,9 +13,18 @@
     }
   },
   "points": {
-    "HCP-min": 0,
-    "HCP-max": 0,
-    "distribution_points-min": 0,
-    "distribution_points-max": 0
+    "HCP-min": null,
+    "HCP-max": null,
+    "distribution_points-min": null,
+    "distribution_points-max": null
+  },
+  "keycards": {
+    "number_of_winners": null,
+    "number_of_loosers": null,
+    "control_in_spades": null,
+    "control_in_hearts": null,
+    "control_in_diamonds": null,
+    "control_in_clubs": null,
+    "keycards_list": []
   }
 }

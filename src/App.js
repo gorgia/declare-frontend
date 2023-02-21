@@ -3,7 +3,6 @@ import React from 'react';
 
 import './App.css';
 import BiddingGraphComponent from "./BiddingGraph";
-import HandDescriptionForm from "./HandDescriptionForm"
 
 
 function App() {
@@ -11,9 +10,6 @@ function App() {
         <div>
             <div className="App">
                 <BiddingGraphComponent/>
-            </div>
-            <div>
-                <HandDescriptionForm/>
             </div>
         </div>
     );
