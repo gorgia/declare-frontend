@@ -7,11 +7,9 @@ import BiddingGraphComponent from "./BiddingGraph";
 
 function App() {
     return (
-        <div>
             <div className="App">
                 <BiddingGraphComponent/>
             </div>
-        </div>
     );
 }
 

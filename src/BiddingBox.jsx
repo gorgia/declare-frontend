@@ -2,7 +2,7 @@ import React, {Component} from "react"
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import {ButtonGroup, Toast, ToastBody, ToggleButtonGroup, ToggleButton} from "react-bootstrap";
+import {Toast, ToggleButton, ToggleButtonGroup} from "react-bootstrap";
 import styled from "styled-components";
 
 const StyledToast = styled(Toast)`

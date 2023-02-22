@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
+import React from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import BiddingBox from "./BiddingBox";
 import HandDescriptionJsonForm from "./HandDescriptionJsonForm";

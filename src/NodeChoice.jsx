@@ -1,11 +1,7 @@
-import React, {Component, createElement, forwardRef, useRef} from "react"
-
-import Container from 'react-bootstrap/Container';
+import React, {Component} from "react"
 import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
 import Popover from "react-bootstrap/Popover";
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import {Overlay} from "react-bootstrap";
 import BiddingBox from "./BiddingBox";
 import OffCanvasBid from "./OffCanvasBid";
 
@@ -19,7 +15,11 @@ export default class NodeChoice extends Component {
             show: props.show,
             off_canvas_show : false
         };
-        this.addChildNode = props.addChildNode.bind(this);
+        this.handleAddBid.bind(this)
+    }
+
+    handleAddBid = () => {
+        this.props.addBid()
     }
 
 
@@ -43,6 +43,8 @@ export default class NodeChoice extends Component {
         const handleOffCanvasClose = () => setOffCanvasShow(false);
         const toggleOffCanvasShow = () => setOffCanvasShow(!this.state.off_canvas_show);
 
+
+
         const chooseAction = (
             <Popover id="popover-basic">
                 <Popover.Body>
@@ -51,7 +53,7 @@ export default class NodeChoice extends Component {
                         <OffCanvasBid show={this.state.off_canvas_show} onHide={handleOffCanvasClose}/>
                         <Button type="button" className="btn btn-primary" size="sm">i</Button>
                         <Button type="button" className="btn btn-primary" size="sm">-</Button>
-                        <Button type="button" className="btn btn-primary" size="sm" onClick={this.addChildNode}>X</Button>
+                        <Button type="button" className="btn btn-primary" size="sm" onClick={this.handleAddBid}>X</Button>
                     </div>
                 </Popover.Body>
             </Popover>

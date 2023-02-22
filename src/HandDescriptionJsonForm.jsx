@@ -6,15 +6,19 @@ import Form from "@rjsf/core";
 const hand_descr = {
     "distribution": {
         "suits_distribution": {
-            "numberOfSpades": null,
-            "numberOfHearts": null,
-            "numberOfDiamonds": null,
-            "numberOfClubs": null
+            "number_of_spades_min": null,
+            "number_of_spades_max": null,
+            "number_of_hearts_min": null,
+            "number_of_hearts_max": null,
+            "number_of_diamonds_min": null,
+            "number_of_diamonds_max": null,
+            "number_of_clubs_min": null,
+            "number_of_clubs_max": null
         },
         "shape": {
             "monocolor": false,
             "bicolor": false,
-            "tricolor": false,
+            "tricolor": false
         }
     },
     "points": {
@@ -48,10 +52,14 @@ const schema: RJSFSchema = {
                         "title": "Suits distribution",
                         "type": "object",
                         "properties": {
-                            "number_of_spades": {"type": "integer", "title": "number of spades"},
-                            "number_of_hearts": {"type": "integer", "title": "number of diamonds"},
-                            "number_of_diamonds": {"type": "integer", "title": "number of hearts"},
-                            "number_of_clubs": {"type": "integer", "title": "number of clubs"},
+                            "number_of_spades_min": {"type": "integer", "title": "min number of spades"},
+                            "number_of_spades_max": {"type": "integer", "title": "max number of spades"},
+                            "number_of_hearts_min": {"type": "integer", "title": "min number of hearts"},
+                            "number_of_hearts_max": {"type": "integer", "title": "min number of hearts"},
+                            "number_of_diamonds_min": {"type": "integer", "title": "number of diamonds"},
+                            "number_of_diamonds_max": {"type": "integer", "title": "number of diamonds"},
+                            "number_of_clubs_min": {"type": "integer", "title": "min number of clubs"},
+                            "number_of_clubs_max": {"type": "integer", "title": "max number of clubs"}
                         }
                     },
                     {
