@@ -46,7 +46,7 @@ export default function OrgChartTree() {
                 name: '1♧',
                 attributes: {
                     bidid: 1,
-                    department: 'Opening',
+                    bid: '1C',
                     HCP: 12,
                 },
                 children: [
@@ -54,18 +54,21 @@ export default function OrgChartTree() {
                         name: '1♢',
                         attributes: {
                             bidid: 10,
+                            bid: '1D'
                         }
                     },
                     {
                         name: '1♢',
                         attributes: {
+                            bid: '1D',
                             bidid: 2,
                         },
                         children: [
                             {
                                 name: '1♡',
                                 attributes: {
-                                    bidid: 3
+                                    bidid: 3,
+                                    bid: '1H'
                                 }
                             },
                         ],
@@ -73,13 +76,15 @@ export default function OrgChartTree() {
                     {
                         name: '1♡',
                         attributes: {
-                            bidid: 4
+                            bidid: 4,
+                            bid:'1H'
                         },
                         children: [
                             {
                                 name: '1♤',
                                 attributes: {
-                                    bidid: 5
+                                    bidid: 5,
+                                    bid: '1S'
                                 }
                             },
                         ],
@@ -142,7 +147,7 @@ export default function OrgChartTree() {
             )}
             <foreignObject width={20} height={20} x={20} y={-20}>
                 <div>
-                    <NodeChoice show={true} addBid={addBid}/>
+                    <NodeChoice show={true} addBid={addBid} bidObj={nodeDatum} bid={nodeDatum.attributes?.bid}/>
                 </div>
             </foreignObject>
         </g>

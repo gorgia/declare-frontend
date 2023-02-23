@@ -13,7 +13,9 @@ export default class NodeChoice extends Component {
         this.myRef = React.createRef();
         this.state = {
             show: props.show,
-            off_canvas_show : false
+            off_canvas_show : false,
+            bidObj: props.bidObj,
+            bid: props.bid //temporary
         };
         this.handleAddBid.bind(this)
     }
@@ -50,7 +52,8 @@ export default class NodeChoice extends Component {
                 <Popover.Body>
                     <div className="btn-group-vertical">
                         <Button type="button" className="btn btn-primary" size="sm" onClick={toggleOffCanvasShow}>+</Button>
-                        <OffCanvasBid show={this.state.off_canvas_show} onHide={handleOffCanvasClose}/>
+                        <OffCanvasBid selectedNodeBid={this.state.bid} show={this.state.off_canvas_show}
+                                      onHide={handleOffCanvasClose} closepopover={() => this.setState({show:false})}/>
                         <Button type="button" className="btn btn-primary" size="sm">i</Button>
                         <Button type="button" className="btn btn-primary" size="sm">-</Button>
                         <Button type="button" className="btn btn-primary" size="sm" onClick={this.handleAddBid}>X</Button>
@@ -60,7 +63,7 @@ export default class NodeChoice extends Component {
         );
 
         return (
-            <OverlayTrigger trigger='click' placement="right" overlay={chooseAction}>
+            <OverlayTrigger trigger={'click'} placement="right" overlay={chooseAction}>
                 <Button variant='link' className="rounded-circle" size='sm'>+</Button>
             </OverlayTrigger>
         )
