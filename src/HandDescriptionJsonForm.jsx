@@ -116,10 +116,14 @@ class HandDescriptionJsonForm extends Component {
         this.setState({formData: newFormData})
     }
 
+    bidSubmit= () => {
+        console.log("bud form submitted")
+    }
+
     render() {
         return (
             <Form schema={schema} validator={validator} formData={this.state.formData}
-                  onChange={e => this.changeFormData(e.formData)} liveValidate/>
+                  onChange={e => this.changeFormData(e.formData)} onSubmit={this.bidSubmit} liveValidate/>
         )
     }
 }

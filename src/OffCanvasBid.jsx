@@ -7,6 +7,7 @@ const OffCanvasBid = (props) => {
 
     const [selectedNodeBid, setSelectedNodeBid] = useState(props.selectedNodeBid);
 
+
     return (
         <>
             <Offcanvas show={props.show} onHide={props.onHide} placement='end' onExited={props.closepopover}>

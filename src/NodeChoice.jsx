@@ -12,16 +12,15 @@ export default class NodeChoice extends Component {
         super(props);
         this.myRef = React.createRef();
         this.state = {
-            show: props.show,
+            showPopover: props.show,
             off_canvas_show : false,
             bidObj: props.bidObj,
             bid: props.bid //temporary
         };
-        this.handleAddBid.bind(this)
     }
 
     handleAddBid = () => {
-        this.props.addBid()
+        this.props.addBid(this.state.bidObj.attributes.bidid)
     }
 
 
@@ -43,7 +42,13 @@ export default class NodeChoice extends Component {
             this.setState({off_canvas_show : value}, () => console.log(this.state.off_canvas_show))
         }
         const handleOffCanvasClose = () => setOffCanvasShow(false);
-        const toggleOffCanvasShow = () => setOffCanvasShow(!this.state.off_canvas_show);
+        const toggleOffCanvasShow = () => {
+            setOffCanvasShow(!this.state.off_canvas_show)
+        };
+
+        const setShowPopover = () => {
+            this.setState( {'show' : !this.state.show})
+        }
 
 
 
@@ -53,7 +58,7 @@ export default class NodeChoice extends Component {
                     <div className="btn-group-vertical">
                         <Button type="button" className="btn btn-primary" size="sm" onClick={toggleOffCanvasShow}>+</Button>
                         <OffCanvasBid selectedNodeBid={this.state.bid} show={this.state.off_canvas_show}
-                                      onHide={handleOffCanvasClose} closepopover={() => this.setState({show:false})}/>
+                                      onHide={handleOffCanvasClose} closepopover={() => this.setState({showPopover:false})}/>
                         <Button type="button" className="btn btn-primary" size="sm">i</Button>
                         <Button type="button" className="btn btn-primary" size="sm">-</Button>
                         <Button type="button" className="btn btn-primary" size="sm" onClick={this.handleAddBid}>X</Button>
@@ -63,8 +68,8 @@ export default class NodeChoice extends Component {
         );
 
         return (
-            <OverlayTrigger trigger={'click'} placement="right" overlay={chooseAction}>
-                <Button variant='link' className="rounded-circle" size='sm'>+</Button>
+            <OverlayTrigger trigger={'click'} placement="right" overlay={chooseAction} show={this.state.showPopover}>
+                <Button variant='link' className="rounded-circle" size='sm' onClick={() => this.setState({'showPopover' : true})}>+</Button>
             </OverlayTrigger>
         )
     }

@@ -1,5 +1,4 @@
 export default function bidComparator(bidA: String, bidB: String) {
-    console.log("bidComparator for bidA: " + bidA + " bidB: " + bidB )
     if(!bidB) return 1
     if(bidB === bidA) return 0
     const level_bidA = bidA[0]
