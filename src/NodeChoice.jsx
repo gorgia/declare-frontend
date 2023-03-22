@@ -4,6 +4,7 @@ import Popover from "react-bootstrap/Popover";
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import BiddingBox from "./BiddingBox";
 import OffCanvasBid from "./OffCanvasBid";
+import PropTypes from "prop-types";
 
 
 export default class NodeChoice extends Component {
@@ -11,9 +12,10 @@ export default class NodeChoice extends Component {
     constructor(props) {
         super(props);
         this.myRef = React.createRef();
+        this.id = props.id
         this.state = {
             showPopover: props.show,
-            off_canvas_show : false,
+            off_canvas_show: false,
             bidObj: props.bidObj,
             bid: props.bid //temporary
         };
@@ -38,8 +40,8 @@ export default class NodeChoice extends Component {
         };
 
         const setOffCanvasShow = (value: boolean) => {
-            console.log ("setOffCanvasShow called:  off_canvas_show_status:" + this.state.off_canvas_show)
-            this.setState({off_canvas_show : value}, () => console.log(this.state.off_canvas_show))
+            console.log("setOffCanvasShow called:  off_canvas_show_status:" + this.state.off_canvas_show)
+            this.setState({off_canvas_show: value}, () => console.log(this.state.off_canvas_show))
         }
         const handleOffCanvasClose = () => setOffCanvasShow(false);
         const toggleOffCanvasShow = () => {
@@ -47,30 +49,42 @@ export default class NodeChoice extends Component {
         };
 
         const setShowPopover = () => {
-            this.setState( {'show' : !this.state.show})
+            this.setState({'show': !this.state.show})
         }
-
 
 
         const chooseAction = (
             <Popover id="popover-basic">
                 <Popover.Body>
                     <div className="btn-group-vertical">
-                        <Button type="button" className="btn btn-primary" size="sm" onClick={toggleOffCanvasShow}>+</Button>
+                        <Button type="button" className="btn btn-primary" size="sm"
+                                onClick={toggleOffCanvasShow}>+</Button>
                         <OffCanvasBid selectedNodeBid={this.state.bid} show={this.state.off_canvas_show}
-                                      onHide={handleOffCanvasClose} closepopover={() => this.setState({showPopover:false})}/>
+                                      onHide={handleOffCanvasClose}
+                                      closepopover={() => this.setState({showPopover: false})}/>
                         <Button type="button" className="btn btn-primary" size="sm">i</Button>
                         <Button type="button" className="btn btn-primary" size="sm">-</Button>
-                        <Button type="button" className="btn btn-primary" size="sm" onClick={this.handleAddBid}>X</Button>
+                        <Button type="button" className="btn btn-primary" size="sm"
+                                onClick={this.handleAddBid}>X</Button>
                     </div>
                 </Popover.Body>
             </Popover>
         );
 
         return (
-            <OverlayTrigger trigger={'click'} placement="right" overlay={chooseAction} show={this.state.showPopover}>
-                <Button variant='link' className="rounded-circle" size='sm' onClick={() => this.setState({'showPopover' : true})}>+</Button>
-            </OverlayTrigger>
+            <div id={this.id}>
+                <OverlayTrigger trigger={'click'} placement="right" overlay={chooseAction}
+                                show={this.state.showPopover}>
+                    <Button variant='link' className="rounded-circle" size='sm'
+                            onClick={() => this.setState({'showPopover': true})}>+</Button>
+                </OverlayTrigger>
+            </div>
         )
     }
 }
+
+NodeChoice.propTypes = {
+    id: PropTypes.string.isRequired
+};
+
+

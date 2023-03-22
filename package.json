@@ -10,6 +10,10 @@
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
     "bootstrap": "^5.2.3",
+    "clone": "^2.1.2",
+    "cytoscape": "^3.23.0",
+    "cytoscape-dom-node": "^1.1.1",
+    "cytoscape-elk": "^2.1.0",
     "d3": "^7.8.2",
     "eslint": "8.34.0",
     "popper": "^1.0.1",
@@ -17,12 +21,14 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.2",
     "react-d3-library": "^1.1.8",
-    "react-d3-tree": "^3.5.0",
+    "react-d3-tree": "^3.5.1",
     "react-dom": "^18.2.0",
     "react-scripts": "^5.0.1",
     "styled-components": "^5.3.6",
     "traverse": "^0.6.7",
-    "web-vitals": "^3.1.1"
+    "web-vitals": "^3.1.1",
+    "web-worker": "^1.2.0",
+    "webcola": "^3.4.0"
   },
   "scripts": {
     "start": "react-scripts start",

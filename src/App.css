@@ -1,9 +1,5 @@
-@import "custom-styles.scss";
-
 .App {
   text-align: center;
-  height: 100%;
-  min-height: 100vh;
 }
 
 .App-logo {
@@ -32,13 +28,7 @@
   color: #61dafb;
 }
 
-/* App.css */
-.diagram-component {
-  width: 400px;
-  height: 400px;
-  border: solid 1px black;
-  background-color: white;
-}
+
 
 @keyframes App-logo-spin {
   from {
