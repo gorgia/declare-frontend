@@ -22,7 +22,7 @@ export default class NodeChoice extends Component {
     }
 
     handleAddBid = () => {
-        this.props.addBid(this.state.bidObj.attributes.bidid)
+        this.props.addBid(this.state.bid.id)
     }
 
 
@@ -76,7 +76,7 @@ export default class NodeChoice extends Component {
                 <OverlayTrigger trigger={'click'} placement="right" overlay={chooseAction}
                                 show={this.state.showPopover}>
                     <Button variant='link' className="rounded-circle" size='sm'
-                            onClick={() => this.setState({'showPopover': true})}>+</Button>
+                            onClick={() => this.setState({'showPopover': true})}>{this.props.bid.properties.bid_label}</Button>
                 </OverlayTrigger>
             </div>
         )

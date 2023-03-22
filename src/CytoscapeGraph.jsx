@@ -4,7 +4,10 @@ import Cytoscape from "cytoscape";
 import elk from "cytoscape-elk"
 import PropTypes from "prop-types";
 import {Col, Container, Row} from "react-bootstrap";
-import React from "react";
+import React, {useState} from "react";
+import Neo4jMock from "./Neo4jMock";
+import clone from "clone";
+import traverse from "traverse";
 
 Cytoscape.use(elk);
 
@@ -22,6 +25,47 @@ Car.propTypes = {
 
 
 function CytoscapeGraph() {
+
+    const [neo4jData, setNo4jData] = useState(new Neo4jMock().data)
+    const [injectedNodesCount, setInjectedNodesCount] = useState(3);
+
+    const getMaxBidId = () => {
+        return Math.max(...neo4jData.graph.nodes.map(o => o.id))
+    }
+
+    const getMaxRelationshipId = () => {
+        return Math.max(...neo4jData.graph.relationships.map(o => o.id))
+    }
+
+    const tempAddBid = (startNodeId) => {
+        const maxBidId = (getMaxBidId() + 1).toString()
+        const newBid = {
+            "id": maxBidId,
+            "labels": ["Bid"],
+            "properties": {
+                "bid_label": "1NT"
+            }
+        }
+        const maxRelId = (getMaxRelationshipId() + 1).toString()
+        const newRelationship = {
+            "id": maxRelId,
+            "startNode": startNodeId,
+            "endNode": maxBidId
+        }
+        addBid(newBid, newRelationship)
+    }
+
+    const addBid = (newBid, newRelationship) => {
+        console.log("addBid called: starting node id " + newRelationship.startNode);
+        const nextData = clone(neo4jData);
+        nextData.graph.nodes.push(newBid)
+        nextData.graph.relationships.push(newRelationship)
+        console.log(nextData);
+        setNo4jData(nextData);
+        setInjectedNodesCount(injectedNodesCount + 1)
+        console.log("injected nodes count = " + injectedNodesCount)
+    }
+
     return (
         <Container>
             <Graph layoutParams={{
@@ -43,29 +87,16 @@ function CytoscapeGraph() {
                     },
                 ]
             }}>
-                <Node key="foo" id="foo">
-                    <NodeChoice id="foo"/>
-                </Node>
-                <Node key="bar" id="bar">
-                    <NodeChoice id="foo"/>
-                </Node>
-                <Node key="bazz" id="bazz">
-                    <NodeChoice id="foo"/>
-                </Node>
-                <Node key="puzz" id="puzz">
-                    <NodeChoice id="foo"/>
-                </Node>
-                <Node key="azz" id="azz">
-                    <NodeChoice id="foo"/>
-                </Node>
-                <Node key="az" id="az">
-                    <NodeChoice id="foo"/>
-                </Node>
-                <Edge key="foo_bar" id="foo_bar" source="foo" target="bar"/>
-                <Edge key="bar-bazz" id="bar-bazz" source="bar" target="bazz"/>
-                <Edge key="bar-puzz" id="bar-puzz" source="bar" target="puzz"/>
-                <Edge key="bazz-azz" id="bazz-azz" source="bazz" target="azz"/>
-                <Edge key="bazz-az" id="bazz-az" source="bazz" target="az"/>
+                {neo4jData.graph.nodes.map((node) => (
+                    <Node key={node.id} id={node.id}>
+                        <NodeChoice id={node.id} addBid={tempAddBid} bid={node}/>
+                    </Node>
+                ))}
+                {neo4jData.graph.relationships.map((relationship) => (
+                    <Edge key={relationship.startNode + "_" + relationship.endNode}
+                          id={relationship.startNode + "_" + relationship.endNode}
+                          source={relationship.startNode} target={relationship.endNode}/>
+                ))}
             </Graph>
         </Container>
     );
